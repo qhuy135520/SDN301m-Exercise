@@ -1,27 +1,15 @@
 import express from "express";
-import bodyParser from "body-parser";
-import viewEngine from "./config/viewEngine";
-import initWebRoutes from "./route/web";
-import connectDB from "./config/connectDB";
-
+import configViewEngine from "./configs/viewengine";
+import initWebRoutes from "./routes/web";
 require("dotenv").config();
 
-let app = express();
+const app = express();
 
-//config app
+configViewEngine(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-viewEngine(app);
 initWebRoutes(app);
 
-connectDB();
-
-let port = process.env.PORT || 6969;
-//Port === undefined => port = 6969
-
-app.listen(port, () => {
-  //callback
-  console.log("Backend Nodejs is runing on the port : " + port);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log("Successfully on " + PORT);
 });
