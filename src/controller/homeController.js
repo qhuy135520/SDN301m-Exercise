@@ -3,7 +3,9 @@ const handlerWebRoute = (req, res) => {
   return res.render("home.ejs", { name });
 };
 
-const handlerControllerPage = (req, res) => {};
+const handlerControllerPage = (req, res) => {
+  return res.render("about.ejs")
+};
 
 module.exports = {
   handlerWebRoute,
